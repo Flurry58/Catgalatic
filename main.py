@@ -273,7 +273,7 @@ async def on_message(message):
 	mescon = mescon.lower()
 	data = [mescon]
   	
-	bad_words = ["cunt", "bloody hell", "crikey", "choad", "wanker", "twat", "pussy", "nigga", "gay"]
+	bad_words = ["cunt", "bloody hell", "crikey", "choad", "wanker", "twat", "pussy", "nigga"]
 	res = [ele for ele in bad_words if(ele in mescon)]
 	result = bool(res)
 	if result == True:
