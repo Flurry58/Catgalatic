@@ -20,6 +20,9 @@ updatefunc = False
 from getpass import getpass
 listen = False
 
+if server.result != "":
+	print(server.result)
+	
 @client.command(pass_conetext=True)
 async def say(ctx, *, messages):
 	await ctx.send(messages)
