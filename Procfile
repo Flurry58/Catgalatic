@@ -1,3 +1,3 @@
 worker: python main.py
-web: gunicorn 
-server:app
+web: python server.py
+heroku ps:scale web=1
