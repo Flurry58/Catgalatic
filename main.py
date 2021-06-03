@@ -306,6 +306,11 @@ async def on_message(message):
 				
 				await add_experience(auth)
 				await level_up(member, auth)
+			elif guild1 == "ℳᎽ𝒯ℋℂℛᎯℱ𝒯":
+				response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users4','function': 'update_data', 'author': auth})
+				
+				await add_experience(auth)
+				await level_up(member, auth)
 	if listen == True:
 		await client.process_commands(message)
 
