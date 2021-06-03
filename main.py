@@ -288,7 +288,7 @@ async def on_message(message):
 			return
 		else:
 			guild1 = str(message.guild.name)
-			if guild1 == "Catgalactic Hangout/Support Server":
+			if guild1 == "Catgalactic Hangout":
 				response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'update_data', 'author': auth})
 				
 				await add_experience(auth)
@@ -296,8 +296,13 @@ async def on_message(message):
 							
 							
 							
-			elif guild1 == "sʞɹoMʎɯnᗡɓıᙠ⚠":
+			elif guild1 == "Chill Dimension":
 				response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users2','function': 'update_data', 'author': auth})
+				
+				await add_experience(auth)
+				await level_up(member, auth)
+			elif guild1 == "Amadden's Hangout Server":
+				response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users3','function': 'update_data', 'author': auth})
 				
 				await add_experience(auth)
 				await level_up(member, auth)
