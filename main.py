@@ -72,7 +72,7 @@ async def on_reaction_add(reaction, user):
   ChID = '742960432225976342'
   if reaction.message.channel.id != ChID:
     return
-  if reaction.id == 851169051752529962":
+  if reaction.id == "851169051752529962":
     age18 = discord.utils.get(user.server.roles, name="testrole")
     await client.add_roles(user, age18)
 
