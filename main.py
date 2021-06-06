@@ -69,12 +69,12 @@ async def on_member_join(member):
 
 @client.event
 async def on_reaction_add(reaction, user):
-  ChID = '487165969903517696'
+  ChID = '742960432225976342'
   if reaction.message.channel.id != ChID:
     return
-  if reaction.emoji == "🏃":
-    CSGO = discord.utils.get(user.server.roles, name="CSGO_P")
-    await client.add_roles(user, CSGO)
+  if reaction.id == 851169051752529962":
+    age18 = discord.utils.get(user.server.roles, name="testrole")
+    await client.add_roles(user, age18)
 
 @client.command()
 async def suggest(ctx, *, message):
