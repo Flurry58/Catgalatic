@@ -298,7 +298,7 @@ async def on_message(message):
 				response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'update_data', 'author': auth})
 				
 				await add_experience(auth)
-				await level_up(member, auth)
+				await level_up(message, auth)
 							
 							
 							
@@ -343,26 +343,38 @@ async def level_up(user, username):
 		await user.dm_channel.send(f'You are now level {lvl_end}!')
 		if lvl_end == 1:
 			role = discord.utils.get(user.guild.roles, name="Level 1")
-			await user.add_roles(role)
+			user = message.author
+			user_id = user.id
+			guild_id = message.guild.id
+			
+			await member.add_roles(guild_id, user_id, 838847628053708850, reason=None)
 		elif lvl_end == 2:
 			previous = discord.utils.get(user.guild.roles, name="Level 1")
 			role = discord.utils.get(user.guild.roles, name="Level 2")
-			await user.remove_roles(previous)
-			await user.add_roles(role)
+			user = message.author
+			user_id = user.id
+			guild_id = message.guild.id
+			
+			await member.add_roles(guild_id, user_id, 838847846361858058, reason=None)
 		elif lvl_end == 3:
 			previous = discord.utils.get(user.guild.roles, name="Level 2")
-			await user.remove_roles(previous)
 			role = discord.utils.get(user.guild.roles, name="Level 3")
-			await user.add_roles(role)
+			user = message.author
+			user_id = user.id
+			guild_id = message.guild.id
+			
+			await member.add_roles(guild_id, user_id, 838847888116940871, reason=None)
 		elif lvl_end == 4:
 			previous = discord.utils.get(user.guild.roles, name="Level 3")
-			await user.remove_roles(previous)
 			role = discord.utils.get(user.guild.roles, name="Level 4")
+			user = message.author
+			await user.remove_roles(previous)
 			await user.add_roles(role)
 		elif lvl_end == 5:
 			previous = discord.utils.get(user.guild.roles, name="Level 4")
-			await user.remove_roles(previous)
 			role = discord.utils.get(user.guild.roles, name="Level 5")
+			user = message.author
+			await user.remove_roles(previous)
 			await user.add_roles(role)
 		elif lvl_end == 6:
 			previous = discord.utils.get(user.guild.roles, name="Level 5")
@@ -371,18 +383,21 @@ async def level_up(user, username):
 			await user.add_roles(role)
 		elif lvl_end == 7:
 			previous = discord.utils.get(user.guild.roles, name="Level 6")
-			await user.remove_roles(previous)
 			role = discord.utils.get(user.guild.roles, name="Level 7")
+			user = message.author
+			await user.remove_roles(previous)
 			await user.add_roles(role)
 		elif lvl_end == 8:
 			previous = discord.utils.get(user.guild.roles, name="Level 7")
-			await user.remove_roles(previous)
 			role = discord.utils.get(user.guild.roles, name="Level 8")
+			user = message.author
+			await user.remove_roles(previous)
 			await user.add_roles(role)
 		elif lvl_end == 9:
 			previous = discord.utils.get(user.guild.roles, name="Level 8")
-			await user.remove_roles(previous)
 			role = discord.utils.get(user.guild.roles, name="Level 9")
+			user = message.author
+			await user.remove_roles(previous)
 			await user.add_roles(role)
 
 
