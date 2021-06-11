@@ -95,17 +95,8 @@ async def afk_on(ctx):
   	author = ctx.author
   	role = discord.utils.get(ctx.guild.roles, name='AFK')
   	await author.add_roles(role)
-  
   	await ctx.send("You are now labeled as AFK. To disable it type afk_off")
 
-@client.command()
-async def dashboard(ctx):
-	r =requests.get('https://Catgalatic-Dashboard.loganpollack.repl.co')
-	soup = BeautifulSoup(r.content, 'html.parser')
-	await ctx.send(r.text)
-	await ctx.send(r.headers)
-	await ctx.send(r.status_code)
-	
 	
 	
 @client.command(pass_context=True, help="disable afk role")
@@ -208,7 +199,7 @@ async def clearwarnings(ctx, member: discord.Member):
   auth = str(ctx.author)
   role = discord.utils.get(ctx.guild.roles, name='[!]STAFF TEAM')
   if role in ctx.author.roles:
-    response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'warnings','function': 'clearwarnings', 'author': str(member)})
+    requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'warnings','function': 'clearwarnings', 'author': str(member)})
     await member.create_dm()
     await member.dm_channel.send('Your warnings have been cleared!')
     await ctx.send(f'Warnings cleared for {auth}')
@@ -295,26 +286,22 @@ async def on_message(message):
 		else:
 			guild1 = str(message.guild.name)
 			if guild1 == "Catgalactic Hangout":
-				response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'update_data', 'author': auth})
-				
+				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'update_data', 'author': auth})
 				await add_experience(auth)
 				await level_up(message, auth)
 							
 							
 							
 			elif guild1 == "Chill Dimension":
-				response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users2','function': 'update_data', 'author': auth})
-				
+				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users2','function': 'update_data', 'author': auth})
 				await add_experience(auth)
 				await level_up(member, auth)
 			elif guild1 == "Amadden's Hangout Server":
-				response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users3','function': 'update_data', 'author': auth})
-				
+				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users3','function': 'update_data', 'author': auth})
 				await add_experience(auth)
 				await level_up(member, auth)
 			elif guild1 == "ℳᎽ𝒯ℋℂℛᎯℱ𝒯":
-				response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users4','function': 'update_data', 'author': auth})
-				
+				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users4','function': 'update_data', 'author': auth})
 				await add_experience(auth)
 				await level_up(member, auth)
 	if listen == True:
@@ -326,11 +313,11 @@ async def on_member_remove(member: discord.Member):
   print(f'{member} has left a server.')
 
 async def update_data(users, user):
-    response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','update_warnings': 'add_experience', 'author': user})
-    response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','update_data': 'add_experience', 'author': user})
+	requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','update_warnings': 'add_experience', 'author': user})
+	requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','update_data': 'add_experience', 'author': user})
 
 async def add_experience(user):
-	response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'add_experience', 'author': user})
+	requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'add_experience', 'author': user})
 
 
 async def level_up(user, username):
@@ -349,7 +336,6 @@ async def level_up(user, username):
 			user = message.author
 			user_id = user.id
 			guild_id = message.guild.id
-			
 			await member.add_roles(guild_id, user_id, 838847628053708850, reason=None)
 		elif lvl_end == 2:
 			previous = discord.utils.get(user.guild.roles, name="Level 1")
@@ -381,8 +367,9 @@ async def level_up(user, username):
 			await user.add_roles(role)
 		elif lvl_end == 6:
 			previous = discord.utils.get(user.guild.roles, name="Level 5")
-			await user.remove_roles(previous)
 			role = discord.utils.get(user.guild.roles, name="Level 6")
+			user = message.author
+			await user.remove_roles(previous)
 			await user.add_roles(role)
 		elif lvl_end == 7:
 			previous = discord.utils.get(user.guild.roles, name="Level 6")
