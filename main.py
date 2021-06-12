@@ -5,7 +5,7 @@ import os
 import server
 from discord.ext import commands
 from discord.utils import get
-from utils.config import PREFIX, HOST_CHANNEL, ROLES
+from utils.config import HOST_CHANNEL, ROLES
 from utils.utils import should_ignore
 from utils.roles import add_role, get_role_from_reaction, remove_role, remove_all_roles
 from utils.emojis import get_emoji_from_reaction, is_clearing_emoji, is_listed_emoji
