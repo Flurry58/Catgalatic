@@ -62,10 +62,9 @@ def listToString(s):
 @client.event
 async def on_ready():
     print("Logged in as")
-    print(bot.user.name)
-    print(bot.user.id)
+    print(client.user.name)
+    print(client.user.id)
     print("------")
-    await run_cleanup()
 
 @client.event
 async def on_member_join(member):
