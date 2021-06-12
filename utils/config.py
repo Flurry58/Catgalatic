@@ -10,15 +10,19 @@ INACCESSIBLE_ROLES = {"the whats role role", "Admin", "Mods", "Interviewers",
 # alphabetically order groups to keep correct order
 
 ROLES = {
-    'Test': {
-      
+    'Sexuality': {
+        'Gay/Lesbian': ':GayLesbianflag:',
+        'Heterosexual/Straight': ':HeteroSexualFlag:',
+        'Bi-Sexual': ':BisexualFlag:',
+        'Pansexual': ':PanSexualflag:',
+        'Asexual':  ':asexualflag:'
     },
     'Gender': {
         'Male': '♂️',
         'Female': '♀️',
         'Non-Binary': '⚲',
-        'Gender Fluid': '☿️',
-        'Trans Gender': '⚧️'
+        'Gender Fluid': ':genderfluidflag:',
+        'Trans Gender': ':transgender:'
     },
     'seniorities': {
         'Student': '🎓',
