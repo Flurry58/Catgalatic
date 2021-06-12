@@ -76,7 +76,7 @@ async def on_member_join(member):
   
 
 
-
+@client.command()
 async def init(client, channel, user):
     if dow == 42:
         await client.send_message(channel, "Must be mod or admin to initiate")
