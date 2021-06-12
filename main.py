@@ -5,10 +5,7 @@ import os
 import server
 from discord.ext import commands
 from discord.utils import get
-from utils.config import HOST_CHANNEL, ROLES
-from utils.utils import should_ignore
-from utils.roles import add_role, get_role_from_reaction, remove_role, remove_all_roles
-from utils.emojis import get_emoji_from_reaction, is_clearing_emoji, is_listed_emoji
+
 
 from utils.config import EMBEDS
 from utils.utils import is_mod_or_admin
@@ -76,76 +73,16 @@ async def on_member_join(member):
   
 
 
-@client.command()
-async def init(client, channel, user):
-    if dow == 42:
-        await client.send_message(channel, "Must be mod or admin to initiate")
-    else:
-        await client.send_message(channel, "Initiating...")
-
-        for i in range(len(EMBEDS)):
-            title, message = 0, 1
-            init_embed = discord.Embed(title=EMBEDS[i][title], type='rich',
-                                       description=EMBEDS[i][message], color=0xffffff)
-            init_message = await client.send_message(channel, embed=init_embed)
-
-            role_group = sorted(ROLES.keys())[i]
-            curr_roles = ROLES[role_group]
-            for r, emoji in curr_roles.items():
-                reaction = get(client.get_all_emojis(), name=emoji)
-                # if reaction is not a default Discord reaction
-                if reaction is None:
-                    reaction = emoji
-                await client.add_reaction(init_message, reaction)
 @client.event
 async def on_reaction_add(reaction, user):
-    """ When reaction is added, dispatch correct action """
-
-    if not should_ignore(client, reaction.message.channel, user):
-        emoji = get_emoji_from_reaction(reaction)
-
-        # if a clearing emoji was clicked, remove all roles
-        if is_clearing_emoji(emoji):
-            await remove_all_roles(client, user)
-
-        # if emoji was not already listed, remove
-        elif not is_listed_emoji(emoji):
-            await client.remove_reaction(reaction.message, reaction.emoji, user)
-
-        else:
-            role = get_role_from_reaction(reaction)
-            await add_role(client, user, role)
-
-async def run_cleanup():
-    """ Removes all bot messages from HOST_CHANNEL and re-initiates """
-
-    print("Started cleanup")
-    channel = get(client.get_all_channels(), name=HOST_CHANNEL)
-    if channel is None:
-        print("Could not locate channel: {}".format(HOST_CHANNEL))
-        return
-    else:
-        author = None
-        async for message in client.logs_from(channel):
-            if message.author.id == client.user.id:
-                author = message.author
-                await client.delete_message(message)
-
-        if author is None:
-            print("Could not re-add reaction messages. Admin must manually run >init")
-        else:
-            await commands.init(client, channel, author)
-    print("Finished cleaning up {} channel".format(HOST_CHANNEL))
-
-@client.event
-async def on_reaction_remove(reaction, user):
-    """ When user removes reaction, remove role from user """
-
-    if not should_ignore(client, reaction.message.channel, user):
-        role = get_role_from_reaction(reaction)
-        await remove_role(client, user, role)
-
-
+	ChID = '742960432225976342'
+	if reaction.message.channel.id != ChID:
+		return
+	emoji = get(bot.get_all_emojis(), name='transgender')
+	if reaction.emoji == emoji:
+		CSGO = discord.utils.get(user.server.roles, name="Trans Gender")
+		await client.add_roles(user, CSGO)
+	
 
 @client.command()
 async def suggest(ctx, *, message):
