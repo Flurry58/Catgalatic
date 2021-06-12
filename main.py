@@ -3,16 +3,17 @@ import os
 #import pynacl
 #import dnspython
 import server
-from discord import Game
+from discord.ext import commands
 from discord.utils import get
-from discord.ext.commands import Bot
-
 from utils.config import PREFIX, HOST_CHANNEL, ROLES
 from utils.utils import should_ignore
 from utils.roles import add_role, get_role_from_reaction, remove_role, remove_all_roles
 from utils.emojis import get_emoji_from_reaction, is_clearing_emoji, is_listed_emoji
-import commands
 
+from utils.config import EMBEDS
+from discord.ext.commands import HelpFormatter
+from utils.utils import is_mod_or_admin
+dow = 1
 import datetime
 import time
 import requests
@@ -75,6 +76,48 @@ async def on_member_join(member):
   role_members = discord.utils.get(ctx.guild.roles, name='Level 1')
   await update_data(users, member)
   
+
+
+async def help_cmd(client, ctx, *args):
+    formatter = HelpFormatter()
+
+    if len(args) == 0:
+        pages = client.formatter.format_help_for(ctx, bot)
+    else:
+        cmd_str = args[0][0]
+        command = client.commands.get(cmd_str)
+
+        if command is None:
+            emb = discord.Embed(title='Command: {}'.format(cmd_str), type='rich',
+                                description='Invalid command entered', color=0xff0000)
+            await client.send_message(ctx.message.channel, embed=emb)
+            return
+        else:
+            pages = client.formatter.format_help_for(ctx, command)
+    for page in pages:
+        await client.send_message(ctx.message.channel, page)
+
+
+async def init(client, channel, user):
+    if dow == 42:
+        await client.send_message(channel, "Must be mod or admin to initiate")
+    else:
+        await client.send_message(channel, "Initiating...")
+
+        for i in range(len(EMBEDS)):
+            title, message = 0, 1
+            init_embed = discord.Embed(title=EMBEDS[i][title], type='rich',
+                                       description=EMBEDS[i][message], color=0xffffff)
+            init_message = await client.send_message(channel, embed=init_embed)
+
+            role_group = sorted(ROLES.keys())[i]
+            curr_roles = ROLES[role_group]
+            for r, emoji in curr_roles.items():
+                reaction = get(client.get_all_emojis(), name=emoji)
+                # if reaction is not a default Discord reaction
+                if reaction is None:
+                    reaction = emoji
+                await client.add_reaction(init_message, reaction)
 @client.event
 async def on_reaction_add(reaction, user):
     """ When reaction is added, dispatch correct action """
