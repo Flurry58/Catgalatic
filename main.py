@@ -11,7 +11,6 @@ from utils.roles import add_role, get_role_from_reaction, remove_role, remove_al
 from utils.emojis import get_emoji_from_reaction, is_clearing_emoji, is_listed_emoji
 
 from utils.config import EMBEDS
-from discord.ext.commands import HelpFormatter
 from utils.utils import is_mod_or_admin
 dow = 1
 import datetime
@@ -77,25 +76,6 @@ async def on_member_join(member):
   await update_data(users, member)
   
 
-
-async def help_cmd(client, ctx, *args):
-    formatter = HelpFormatter()
-
-    if len(args) == 0:
-        pages = client.formatter.format_help_for(ctx, bot)
-    else:
-        cmd_str = args[0][0]
-        command = client.commands.get(cmd_str)
-
-        if command is None:
-            emb = discord.Embed(title='Command: {}'.format(cmd_str), type='rich',
-                                description='Invalid command entered', color=0xff0000)
-            await client.send_message(ctx.message.channel, embed=emb)
-            return
-        else:
-            pages = client.formatter.format_help_for(ctx, command)
-    for page in pages:
-        await client.send_message(ctx.message.channel, page)
 
 
 async def init(client, channel, user):
