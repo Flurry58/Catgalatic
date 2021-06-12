@@ -3,15 +3,20 @@ import os
 #import pynacl
 #import dnspython
 import server
-from discord.ext import commands
+from discord import Game
+from discord.utils import get
+from discord.ext.commands import Bot
+
+from utils.config import PREFIX, HOST_CHANNEL, ROLES
+from utils.utils import should_ignore
+from utils.roles import add_role, get_role_from_reaction, remove_role, remove_all_roles
+from utils.emojis import get_emoji_from_reaction, is_clearing_emoji, is_listed_emoji
+import commands
+
 import datetime
 import time
-from discord.utils import get
 import requests
-import aiosqlite
-from bs4 import BeautifulSoup
 import json
-import sqlite3
 from itertools import islice
 client = commands.Bot(command_prefix='&')
 client2 = discord.Client()
@@ -56,7 +61,11 @@ def listToString(s):
     return str1 
 @client.event
 async def on_ready():
-    print("Bot is on")
+    print("Logged in as")
+    print(bot.user.name)
+    print(bot.user.id)
+    print("------")
+    await run_cleanup()
 
 @client.event
 async def on_member_join(member):
@@ -66,16 +75,55 @@ async def on_member_join(member):
   role_members = discord.utils.get(ctx.guild.roles, name='Level 1')
   await update_data(users, member)
   
-
 @client.event
 async def on_reaction_add(reaction, user):
-  ChID = '742960432225976342'
-  if reaction.message.channel.id != ChID:
-    return
-  if reaction.id == "844405707419287562":
-    age18 = discord.utils.get(user.server.roles, name="testrole")
-    await client.add_roles(user, age18)
-	
+    """ When reaction is added, dispatch correct action """
+
+    if not should_ignore(client, reaction.message.channel, user):
+        emoji = get_emoji_from_reaction(reaction)
+
+        # if a clearing emoji was clicked, remove all roles
+        if is_clearing_emoji(emoji):
+            await remove_all_roles(client, user)
+
+        # if emoji was not already listed, remove
+        elif not is_listed_emoji(emoji):
+            await client.remove_reaction(reaction.message, reaction.emoji, user)
+
+        else:
+            role = get_role_from_reaction(reaction)
+            await add_role(client, user, role)
+
+async def run_cleanup():
+    """ Removes all bot messages from HOST_CHANNEL and re-initiates """
+
+    print("Started cleanup")
+    channel = get(client.get_all_channels(), name=HOST_CHANNEL)
+    if channel is None:
+        print("Could not locate channel: {}".format(HOST_CHANNEL))
+        return
+    else:
+        author = None
+        async for message in client.logs_from(channel):
+            if message.author.id == client.user.id:
+                author = message.author
+                await client.delete_message(message)
+
+        if author is None:
+            print("Could not re-add reaction messages. Admin must manually run >init")
+        else:
+            await commands.init(client, channel, author)
+    print("Finished cleaning up {} channel".format(HOST_CHANNEL))
+
+@client.event
+async def on_reaction_remove(reaction, user):
+    """ When user removes reaction, remove role from user """
+
+    if not should_ignore(client, reaction.message.channel, user):
+        role = get_role_from_reaction(reaction)
+        await remove_role(client, user, role)
+
+
 
 @client.command()
 async def suggest(ctx, *, message):
