@@ -47,7 +47,7 @@ EMBEDS = [
       "Click any react on this message to clear all of your self-assignable roles. "
       "If it is unclear what emojis are which, hover over the emoji to see its name.")),
     ("Gender", "Select your gender** Possible roles: {}."
-        .format(', '.join(sorted(ROLES['languages'].keys())))),
+        .format(', '.join(sorted(ROLES['Gender'].keys())))),
     ("Seniority Roles",
      "You are only allowed one seniority role that best reflects where you\'re at in your career. Student = :mortar_board:, Intern = :nerd:, Junior Developer = :briefcase:, "
      "Mid-level Developer = :necktie:, Senior Developer = :older_man:."),
