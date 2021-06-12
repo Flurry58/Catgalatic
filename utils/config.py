@@ -1,4 +1,4 @@
-HOST_CHANNEL = "roles"
+HOST_CHANNEL = "Catgalactic Hangout"
 
 # INACCESSIBLE_ROLES = [role_name, role_name, ...]
 
