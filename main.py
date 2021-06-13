@@ -346,7 +346,7 @@ async def level_up(message, user, username):
 				print("stopped")
 			else:
 				test = discord.utils.get(user.guild.roles, name=role)
-				await client.add_roles(user, test)
+				await client2.add_roles(user, test)
 				await user.create_dm()
 				await user.dm_channel.send("You are now Level 1!")
 		elif lvl_end == 2:
@@ -356,8 +356,8 @@ async def level_up(message, user, username):
 			else:
 				test = discord.utils.get(user.guild.roles, name=role)
 				previous = discord.utils.get(user.guild.roles, name="Level 1")
-				await client.add_roles(user, test)
-				await client.remove_roles(user, previous)
+				await client2.add_roles(user, test)
+				await client2.remove_roles(user, previous)
 				await user.create_dm()
 				await user.dm_channel.send("You are now Level 2!")
 		elif lvl_end == 3:
@@ -367,8 +367,8 @@ async def level_up(message, user, username):
 			else:
 				test = discord.utils.get(user.guild.roles, name=role)
 				previous = discord.utils.get(user.guild.roles, name="Level 2")
-				await client.add_roles(user, test)
-				await client.remove_roles(user, previous)
+				await client2.add_roles(user, test)
+				await client2.remove_roles(user, previous)
 				await user.create_dm()
 				await user.dm_channel.send("You are now Level 3!")
 		elif lvl_end == 4:
@@ -378,8 +378,8 @@ async def level_up(message, user, username):
 			else:
 				test = discord.utils.get(user.guild.roles, name=role)
 				previous = discord.utils.get(user.guild.roles, name="Level 3")
-				await client.add_roles(user, test)
-				await client.remove_roles(user, previous)
+				await client2.add_roles(user, test)
+				await client2.remove_roles(user, previous)
 				await user.create_dm()
 				await user.dm_channel.send("You are now Level 4!")
 		elif lvl_end == 5:
@@ -389,8 +389,8 @@ async def level_up(message, user, username):
 			else:
 				test = discord.utils.get(user.guild.roles, name=role)
 				previous = discord.utils.get(user.guild.roles, name="Level 4")
-				await client.add_roles(user, test)
-				await client.remove_roles(user, previous)
+				await client2.add_roles(user, test)
+				await client2.remove_roles(user, previous)
 				await user.create_dm()
 				await user.dm_channel.send("You are now Level 5!")
 		elif lvl_end == 6:
@@ -400,8 +400,8 @@ async def level_up(message, user, username):
 			else:
 				test = discord.utils.get(user.guild.roles, name=role)
 				previous = discord.utils.get(user.guild.roles, name="Level 5")
-				await client.add_roles(user, test)
-				await client.remove_roles(user, previous)
+				await client2.add_roles(user, test)
+				await client2.remove_roles(user, previous)
 				await user.create_dm()
 				await user.dm_channel.send("You are now Level 6!")
 		elif lvl_end == 7:
@@ -411,8 +411,8 @@ async def level_up(message, user, username):
 			else:
 				test = discord.utils.get(user.guild.roles, name=role)
 				previous = discord.utils.get(user.guild.roles, name="Level 6")
-				await client.add_roles(user, test)
-				await client.remove_roles(user, previous)
+				await client2.add_roles(user, test)
+				await client2.remove_roles(user, previous)
 				await user.create_dm()
 				await user.dm_channel.send("You are now Level 7!")
 		elif lvl_end == 8:
@@ -422,8 +422,8 @@ async def level_up(message, user, username):
 			else:
 				test = discord.utils.get(user.guild.roles, name=role)
 				previous = discord.utils.get(user.guild.roles, name="Level 7")
-				await client.add_roles(user, test)
-				await client.remove_roles(user, previous)
+				await client2.add_roles(user, test)
+				await client2.remove_roles(user, previous)
 				await user.create_dm()
 				await user.dm_channel.send("You are now Level 8!")
 		elif lvl_end == 9:
@@ -433,8 +433,8 @@ async def level_up(message, user, username):
 			else:
 				test = discord.utils.get(user.guild.roles, name=role)
 				previous = discord.utils.get(user.guild.roles, name="Level 8")
-				await client.add_roles(user, test)
-				await client.remove_roles(user, previous)
+				await client2.add_roles(user, test)
+				await client2.remove_roles(user, previous)
 				await user.create_dm()
 				await user.dm_channel.send("You are now Level 9!")
 
