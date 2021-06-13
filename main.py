@@ -353,8 +353,8 @@ async def level_up(message, user, username):
 			if role is None:
 				print("stopped")
 			else:
-				role1 = discord.utils.get(message.server.roles, name=role)
-				previous = discord.utils.get(message.server.roles, name="Level 1")
+				role1 = discord.utils.get(message.guild.roles, name=role)
+				previous = discord.utils.get(message.guild.roles, name="Level 1")
 				await user.add_role(user, role1)
 				await user.remove_role(user, previous)
 				await user.create_dm()
