@@ -5,6 +5,4 @@ PyNaCl
 dnspython
 requests
 gunicorn
-aiosqlite
-bs4
-mysql-connector-python
+discordLevelingSystem
