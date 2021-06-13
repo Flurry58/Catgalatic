@@ -353,10 +353,10 @@ async def level_up(message, user, username):
 			if role is None:
 				print("stopped")
 			else:
-				role1 = get(user.server.roles, name=role)
-				previous = get(user.server.roles, name="Level 1")
-				await client.add_roles(user, role1)
-				await client.remove_roles(user, previous)
+				role1 = discord.utils.get(user.server.roles, name=role)
+				previous = discord.utils.get(user.server.roles, name="Level 1")
+				await user.add_role(user, role1)
+				await user.remove_role(user, previous)
 				await user.create_dm()
 				await user.dm_channel.send("You are now Level 2!")
 		elif lvl_end == 3:
@@ -430,10 +430,10 @@ async def level_up(message, user, username):
 			if role is None:
 				print("stopped")
 			else:
-				role1 = get(user.server.roles, name=role)
+				role1 = discord.utils.get(user.server.roles, name=role)
 				previous = get(user.server.roles, name="Level 8")
-				await client.add_roles(user, role1)
-				await client.remove_roles(user, previous)
+				await user.add_role(user, role1)
+				await user.remove_role(user, previous)
 				await user.create_dm()
 				await user.dm_channel.send("You are now Level 9!")
 
