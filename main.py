@@ -355,8 +355,8 @@ async def level_up(message, user, username):
 			else:
 				role1 = discord.utils.get(message.guild.roles, name=role)
 				previous = discord.utils.get(message.guild.roles, name="Level 1")
-				await user.add_role(user, role1)
-				await user.remove_role(user, previous)
+				await user.add_roles(user, role1)
+				await user.remove_roles(user, previous)
 				await user.create_dm()
 				await user.dm_channel.send("You are now Level 2!")
 		elif lvl_end == 3:
