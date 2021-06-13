@@ -5,7 +5,6 @@ import os
 import server
 from discord.ext import commands
 from discord.utils import get
-from discordLevelingSystem import DiscordLevelingSystem, LevelUpAnnouncement, RoleAward
 
 
 from utils.config import EMBEDS
@@ -22,19 +21,7 @@ memberlist = []
 updatefunc = False
 from getpass import getpass
 listen = False
-lvl = DiscordLevelingSystem(rate=1, per=60.0)
-my_awards = {
-    johns_server : [
-        RoleAward(role_id=831672678586777601, level_requirement=1, role_name='Rookie'),
-        RoleAward(role_id=831672730583171073, level_requirement=2, role_name='Associate'),
-        RoleAward(role_id=831672814419050526, level_requirement=3, role_name='Legend')
-    ],
-    janes_server : [
-        RoleAward(role_id=851400453904400385, level_requirement=1, role_name='Silver'),
-        RoleAward(role_id=851379776111116329, level_requirement=2, role_name='Gold'),
-        RoleAward(role_id=851959077071880202, level_requirement=3, role_name='Diamond')
-    ]
-}
+
 
 if server.result != "":
 	print(server.result)
@@ -354,6 +341,13 @@ async def level_up(message, user, username):
 		await user.create_dm()
 		await user.dm_channel.send(f'You are now level {lvl_end}!')
 		if lvl_end == 1:
+			member = ctx.message.author
+			if role is None:
+				await ctx.send("You have not specified a role")
+			else:
+				test = discord.utils.get(member.guild.roles, name=role)
+				await  client.add_roles(member, test)
+				await ctx.send("Role added")
 			role = discord.utils.get(user.guild.roles, name="Level 1")
 			user = message.author
 			user_id = user.id
