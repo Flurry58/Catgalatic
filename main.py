@@ -297,7 +297,7 @@ async def on_message(message):
 			if guild1 == "Catgalactic Hangout":
 				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'update_data', 'author': auth})
 				await add_experience(auth)
-				await level_up(message, member, auth)
+				await level_up(message.author, message)
 							
 							
 							
@@ -308,11 +308,11 @@ async def on_message(message):
 			elif guild1 == "Amadden's Hangout Server":
 				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users3','function': 'update_data', 'author': auth})
 				await add_experience(auth)
-				await level_up(message, member, auth)
+				await level_up(message.author, message)
 			elif guild1 == "ℳᎽ𝒯ℋℂℛᎯℱ𝒯":
 				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users4','function': 'update_data', 'author': auth})
 				await add_experience(auth)
-				await level_up(message, member, auth)
+				await level_up(message.author, message)
 	if listen == True:
 		await client.process_commands(message)
 
