@@ -330,7 +330,7 @@ async def add_experience(user):
 
 
 async def level_up(user, username):
-	response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'level_up', 'author': username})
+	response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'level_up', 'author': user})
 	output = response.json()
 	lvl_end = int(output['end'])
 	lvl_start = int(output['start'])
