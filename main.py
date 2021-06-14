@@ -301,7 +301,7 @@ async def on_message(message):
 							
 							
 							
-			elif guild1 == "Chill Dimension":
+			elif guild1 == "ChillDen":
 				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users2','function': 'update_data', 'author': auth})
 				await add_experience(auth)
 				await level_up(message.author, message)
@@ -309,7 +309,7 @@ async def on_message(message):
 				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users3','function': 'update_data', 'author': auth})
 				await add_experience(auth)
 				await level_up(message.author, message)
-			elif guild1 == "ℳᎽ𝒯ℋℂℛᎯℱ𝒯":
+			elif guild1 == "Sarah's Hangout Server 2.0":
 				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users4','function': 'update_data', 'author': auth})
 				await add_experience(auth)
 				await level_up(message.author, message)
