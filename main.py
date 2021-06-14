@@ -330,7 +330,6 @@ async def add_experience(user):
 
 
 async def level_up(user, username):
-	guild_id = message.guild.id
 	response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'level_up', 'author': username})
 	output = response.json()
 	lvl_end = int(output['end'])
