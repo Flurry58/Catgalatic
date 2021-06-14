@@ -304,7 +304,7 @@ async def on_message(message):
 			elif guild1 == "Chill Dimension":
 				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users2','function': 'update_data', 'author': auth})
 				await add_experience(auth)
-				await level_up(message, member, auth)
+				await level_up(message.author, message)
 			elif guild1 == "Amadden's Hangout Server":
 				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users3','function': 'update_data', 'author': auth})
 				await add_experience(auth)
@@ -329,9 +329,7 @@ async def add_experience(user):
 	requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'add_experience', 'author': user})
 
 
-async def level_up(message, user, username):
-	user = message.author
-	user_id = user.id
+async def level_up(user, username):
 	guild_id = message.guild.id
 	response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'level_up', 'author': username})
 	output = response.json()
@@ -341,101 +339,52 @@ async def level_up(message, user, username):
 		await user.create_dm()
 		await user.dm_channel.send(f'You are now level {lvl_end}!')
 		if lvl_end == 1:
-			role = "Level 1"
-			if role is None:
-				print("stopped")
-			else:
-				role1 = get(user.server.roles, name=role)
-				await client.add_roles(user, role1)
+			role = discord.utils.get(user.guild.roles, name="Level 1")
+          		await user.add_roles(role)
 				
 		elif lvl_end == 2:
-			role = "Level 2"
-			if role is None:
-				print("stopped")
-			else:
-				role1 = discord.utils.get(message.guild.roles, name=role)
-				previous = discord.utils.get(message.guild.roles, name="Level 1")
-				await user.add_roles(user, role1)
-				await user.remove_roles(user, previous)
-				await user.create_dm()
-				await user.dm_channel.send("You are now Level 2!")
+			previous = discord.utils.get(user.guild.roles, name="Level 1")
+			role = discord.utils.get(user.guild.roles, name="Level 2")
+          		await user.remove_roles(previous)
+          		await user.add_roles(role)
+			await user.create_dm()
+			await user.dm_channel.send("You are now Level 2!")
 		elif lvl_end == 3:
-			role = "Level 3"
-			if role is None:
-				print("stopped")
-			else:
-				role1 = get(user.server.roles, name=role)
-				previous = get(user.server.roles, name="Level 2")
-				await client.add_roles(user, role1)
-				await client.remove_roles(user, previous)
-				await user.create_dm()
-				await user.dm_channel.send("You are now Level 3!")
+			previous = discord.utils.get(user.guild.roles, name="Level 2")
+          		role = discord.utils.get(user.guild.roles, name="Level 3")
+          		await user.remove_roles(previous)
+          		await user.add_roles(role)
+				
 		elif lvl_end == 4:
-			role = "Level 4"
-			if role is None:
-				print("stopped")
-			else:
-				role1 = get(user.server.roles, name=role)
-				previous = get(user.server.roles, name="Level 3")
-				await client.add_roles(user, role1)
-				await client.remove_roles(user, previous)
-				await user.create_dm()
-				await user.dm_channel.send("You are now Level 4!")
+			previous = discord.utils.get(user.guild.roles, name="Level 3")
+          		role = discord.utils.get(user.guild.roles, name="Level 4")
+          		await user.remove_roles(previous)
+          		await user.add_roles(role)
 		elif lvl_end == 5:
-			role = "Level 5"
-			if role is None:
-				print("stopped")
-			else:
-				role1 = get(user.server.roles, name=role)
-				previous = get(user.server.roles, name="Level 4")
-				await client.add_roles(user, role1)
-				await client.remove_roles(user, previous)
-				await user.create_dm()
-				await user.dm_channel.send("You are now Level 5!")
+			previous = discord.utils.get(user.guild.roles, name="Level 4")
+          		role = discord.utils.get(user.guild.roles, name="Level 5")
+          		await user.remove_roles(previous)
+          		await user.add_roles(role)
 		elif lvl_end == 6:
-			role = "Level 6"
-			if role is None:
-				print("stopped")
-			else:
-				role1 = get(user.server.roles, name=role)
-				previous = get(user.server.roles, name="Level 5")
-				await client.add_roles(user, role1)
-				await client.remove_roles(user, previous)
-				await user.create_dm()
-				await user.dm_channel.send("You are now Level 6!")
+			previous = discord.utils.get(user.guild.roles, name="Level 5")
+          		role = discord.utils.get(user.guild.roles, name="Level 6")
+          		await user.remove_roles(previous)
+          		await user.add_roles(role)
 		elif lvl_end == 7:
-			role = "Level72"
-			if role is None:
-				print("stopped")
-			else:
-				role1 = get(user.server.roles, name=role)
-				previous = get(user.server.roles, name="Level 6")
-				await client.add_roles(user, role1)
-				await client.remove_roles(user, previous)
-				await user.create_dm()
-				await user.dm_channel.send("You are now Level 7!")
+			previous = discord.utils.get(user.guild.roles, name="Level 6")
+          		role = discord.utils.get(user.guild.roles, name="Level 7")
+          		await user.remove_roles(previous)
+          		await user.add_roles(role)
 		elif lvl_end == 8:
-			role = "Level 8"
-			if role is None:
-				print("stopped")
-			else:
-				role1 = get(user.server.roles, name=role)
-				previous = get(user.server.roles, name="Level 7")
-				await client.add_roles(user, role1)
-				await client.remove_roles(user, previous)
-				await user.create_dm()
-				await user.dm_channel.send("You are now Level 8!")
+			previous = discord.utils.get(user.guild.roles, name="Level 7")
+          		role = discord.utils.get(user.guild.roles, name="Level 8")
+          		await user.remove_roles(previous)
+          		await user.add_roles(role)
 		elif lvl_end == 9:
-			role = "Level 9"
-			if role is None:
-				print("stopped")
-			else:
-				role1 = discord.utils.get(user.server.roles, name=role)
-				previous = get(user.server.roles, name="Level 8")
-				await user.add_role(user, role1)
-				await user.remove_role(user, previous)
-				await user.create_dm()
-				await user.dm_channel.send("You are now Level 9!")
+			previous = discord.utils.get(user.guild.roles, name="Level 8")
+          		role = discord.utils.get(user.guild.roles, name="Level 9")
+          		await user.remove_roles(previous)
+          		await user.add_roles(role)
 
 
 
