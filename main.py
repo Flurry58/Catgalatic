@@ -336,8 +336,6 @@ async def level_up(user, username, guild):
 	lvl_end = int(output['end'])
 	lvl_start = int(output['start'])
 	if lvl_start < lvl_end:
-		await user.create_dm()
-		await user.dm_channel.send(f'You are now level {lvl_end}!')
 		if lvl_end == 1:
 			role = discord.utils.get(user.guild.roles, name="Level 1")
 			await user.add_roles(role)
