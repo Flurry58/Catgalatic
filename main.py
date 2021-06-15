@@ -337,9 +337,21 @@ async def level_up(user, username, guild):
 	lvl_start = int(output['start'])
 	if lvl_start < lvl_end:
 		if lvl_end == 1:
-			role = discord.utils.get(user.guild.roles, name="Level 1")
-			await user.add_roles(role)
-				
+			try:
+				role = discord.utils.get(user.guild.roles, name="Level 1")
+				await user.add_roles(role)
+			except AttributeError:
+				await guild.create_role(name="Level 1")
+				await guild.create_role(name="Level 2")
+				await guild.create_role(name="Level 3")
+				await guild.create_role(name="Level 4")
+				await guild.create_role(name="Level 5")
+				await guild.create_role(name="Level 6")
+				await guild.create_role(name="Level 7")
+				await guild.create_role(name="Level 8")
+				await guild.create_role(name="Level 9")
+				role = discord.utils.get(user.guild.roles, name="Level 1")
+				await user.add_roles(role)
 		elif lvl_end == 2:
 			previous = discord.utils.get(user.guild.roles, name="Level 1")
 			role = discord.utils.get(user.guild.roles, name="Level 2")
