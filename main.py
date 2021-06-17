@@ -294,7 +294,8 @@ async def on_message(message):
 			return
 		else:
 			guild1 = str(message.guild.name)
-			hexname = guild1.hex()
+			convert = guild1.encode('utf-8')
+			hexname = convert.hex()
 			requests.get('https://Test-1.loganpollack.repl.co', params={'file': hexname,'function': 'update_data', 'author': auth})
 			await add_experience(auth)
 			await level_up(message.author, message, guild1)
