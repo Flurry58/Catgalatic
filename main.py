@@ -299,25 +299,11 @@ async def on_message(message):
 			requests.get('https://Test-1.loganpollack.repl.co', params={'file': hexname,'function': 'update_data', 'author': auth})
 			await add_experience(auth)
 			await level_up(message.author, message, guild1)
-			if guild1 == "Catgalactic Hangout":
-				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'update_data', 'author': auth})
-				await add_experience(auth)
-				await level_up(message.author, message, guild1)
+			
 							
 							
-							
-			elif guild1 == "ChillDen":
-				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users2','function': 'update_data', 'author': auth})
-				await add_experience(auth)
-				await level_up(message.author, message, guild1)
-			elif guild1 == "Amadden's Hangout Server":
-				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users3','function': 'update_data', 'author': auth})
-				await add_experience(auth)
-				await level_up(message.author, message, guild1)
-			elif guild1 == "Sarah's Hangout Server 2.0":
-				requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users4','function': 'update_data', 'author': auth})
-				await add_experience(auth)
-				await level_up(message.author, message, guild1)
+			
+		
 	if listen == True:
 		await client.process_commands(message)
 
