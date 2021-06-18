@@ -317,7 +317,10 @@ async def update_data(users, user):
 	requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','update_data': 'add_experience', 'author': user})
 
 async def add_experience(user):
-	requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'add_experience', 'author': user})
+       guild1 = str(message.guild.name)
+       convert = guild1.encode('utf-8')
+       hexname = convert.hex()
+       requests.get('https://Test-1.loganpollack.repl.co', params={'file': hexname,'function': 'add_experience', 'author': user})
 
 
 async def level_up(user, username, guild):
