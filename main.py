@@ -297,7 +297,7 @@ async def on_message(message):
 			convert = guild1.encode('utf-8')
 			hexname = convert.hex()
 			requests.get('https://Test-1.loganpollack.repl.co', params={'file': hexname,'function': 'update_data', 'author': auth})
-			await add_experience(auth)
+			await add_experience(auth, guild1)
 			await level_up(message.author, message, guild1)
 			
 							
@@ -316,8 +316,7 @@ async def update_data(users, user):
 	requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','update_warnings': 'add_experience', 'author': user})
 	requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','update_data': 'add_experience', 'author': user})
 
-async def add_experience(user):
-       guild1 = str(message.guild.name)
+async def add_experience(user, guild1):
        convert = guild1.encode('utf-8')
        hexname = convert.hex()
        requests.get('https://Test-1.loganpollack.repl.co', params={'file': hexname,'function': 'add_experience', 'author': user})
