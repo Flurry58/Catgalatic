@@ -322,9 +322,10 @@ async def add_experience(user, guild1):
        requests.get('https://Test-1.loganpollack.repl.co', params={'file': hexname,'function': 'add_experience', 'author': user})
 
 
-async def level_up(user, username, guild):
-	
-	response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'users','function': 'level_up', 'author': user})
+async def level_up(user, username, guild1):
+	convert = guild1.encode('utf-8')
+	hexname = convert.hex()
+	response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': hexname,'function': 'level_up', 'author': user})
 	output = response.json()
 	lvl_end = int(output['end'])
 	lvl_start = int(output['start'])
