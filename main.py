@@ -190,7 +190,7 @@ async def unmute(ctx, member: discord.Member):
 @client.command()
 async def warn(ctx, member: discord.Member, *, reason):
 	role = discord.utils.get(ctx.guild.roles, name='[!]STAFF TEAM')
-	guild1 = str(message.guild.name)
+	guild1 = str(member.guild.name)
 	convert = guild1.encode('utf-8')
 	hexname = convert.hex()
 	if role in ctx.author.roles:
@@ -208,7 +208,7 @@ async def warn(ctx, member: discord.Member, *, reason):
 
 @client.command()
 async def clearwarnings(ctx, member: discord.Member):
-	guild1 = str(message.guild.name)
+	guild1 = str(member.guild.name)
 	convert = guild1.encode('utf-8')
 	hexname = convert.hex()
 	auth = str(ctx.author)
@@ -226,7 +226,7 @@ async def clearwarnings(ctx, member: discord.Member):
 
 @client.command()
 async def checkwarnings(ctx, member: discord.Member):
-	guild1 = str(message.guild.name)
+	guild1 = str(member.guild.name)
 	convert = guild1.encode('utf-8')
 	hexname = convert.hex()
 	auth = str(ctx.author)
