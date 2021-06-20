@@ -190,8 +190,11 @@ async def unmute(ctx, member: discord.Member):
 @client.command()
 async def warn(ctx, member: discord.Member, *, reason):
 	role = discord.utils.get(ctx.guild.roles, name='[!]STAFF TEAM')
+	guild1 = str(message.guild.name)
+	convert = guild1.encode('utf-8')
+	hexname = convert.hex()
 	if role in ctx.author.roles:
-		response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'warnings','function': 'add_warnings', 'author': str(member), 'reason':str(reason)})
+		response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'warnings','function': 'add_warnings', 'author': str(member), 'reason':str(reason), 'server': hexname})
 		json_response = response.json()
 		print(json_response)
 		await member.create_dm()
