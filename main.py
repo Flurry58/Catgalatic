@@ -353,8 +353,7 @@ async def level_up(user, username, guild):
 				await guild.create_role(name="Level 7")
 				await guild.create_role(name="Level 8")
 				await guild.create_role(name="Level 9")
-				role = discord.utils.get(user.guild.roles, name="Level 1")
-				await user.add_roles(role)
+			
 		elif lvl_end == 2:
 			previous = discord.utils.get(user.guild.roles, name="Level 1")
 			role = discord.utils.get(user.guild.roles, name="Level 2")
