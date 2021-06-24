@@ -192,9 +192,10 @@ async def warn(ctx, member: discord.Member, *, reason):
 	role = discord.utils.get(ctx.guild.roles, name='[!]STAFF TEAM')
 	guild1 = str(member.guild.name)
 	convert = guild1.encode('utf-8')
-	hexname = convert.hex()
+	hexname = str(convert.hex())
+	filename = 'warns' + hexname
 	if role in ctx.author.roles:
-		response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'warnings','function': 'add_warnings', 'author': str(member), 'reason':str(reason), 'server': hexname})
+		response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': filename,'function': 'add_warnings', 'author': str(member), 'reason':str(reason)})
 		json_response = response.json()
 		print(json_response)
 		await member.create_dm()
@@ -210,11 +211,12 @@ async def warn(ctx, member: discord.Member, *, reason):
 async def clearwarnings(ctx, member: discord.Member):
 	guild1 = str(member.guild.name)
 	convert = guild1.encode('utf-8')
-	hexname = convert.hex()
+	hexname = str(convert.hex())
+	filename = 'warns' + hexname
 	auth = str(ctx.author)
 	role = discord.utils.get(ctx.guild.roles, name='[!]STAFF TEAM')
 	if role in ctx.author.roles:
-		requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'warnings','function': 'clearwarnings', 'author': str(member), 'server':hexname})
+		requests.get('https://Test-1.loganpollack.repl.co', params={'file': filename,'function': 'clearwarnings', 'author': str(member), 'server':hexname})
 		await member.create_dm()
 		await member.dm_channel.send('Your warnings have been cleared!')
 		await ctx.send(f'Warnings cleared for {auth}')
@@ -228,10 +230,11 @@ async def clearwarnings(ctx, member: discord.Member):
 async def checkwarnings(ctx, member: discord.Member):
 	guild1 = str(member.guild.name)
 	convert = guild1.encode('utf-8')
-	hexname = convert.hex()
+	hexname = str(convert.hex())
+	filename = 'warns' + hexname
 	auth = str(ctx.author)
 	mem = str(member)
-	response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': 'warnings','function': 'checkwarnings', 'author': str(member), 'server': hexname})
+	response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': filename,'function': 'checkwarnings', 'author': str(member), 'server': hexname})
 	json_response = response.json()
 	print(json_response)
 	warningsnum = json_response['number']
