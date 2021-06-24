@@ -239,7 +239,12 @@ async def checkwarnings(ctx, member: discord.Member):
 	print(json_response)
 	warningsnum = json_response['number']
 	reasons_list = json_response['reasons']
-	embed = discord.Embed(description=f'This member has {warningsnum} warnings for {reasons_list}',color = 0xf54242)
+	edit_reasons = []
+	for i in range(reasons_list):
+		edit1 = reasons_list[i].split(',')
+		edit2 = edit1[1]
+		edit_reasons.append(edit2)
+	embed = discord.Embed(description=f'This member has {warningsnum} warnings for {edit_reasons}',color = 0xf54242)
 	await ctx.send(embed=embed)
 	
 @client.command(pass_context=True)
