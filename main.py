@@ -365,8 +365,6 @@ async def level_up(user, username, guild):
 			await user.create_dm()
 			await user.dm_channel.send(f'You are now Level 2 in the server {guild}!')
 		elif lvl_end == 3:
-			one = discord.utils.get(user.guild.roles, name="Level 1")
-			await user.remove_roles(one)
 			previous = discord.utils.get(user.guild.roles, name="Level 2")
 			role = discord.utils.get(user.guild.roles, name="Level 3")
 			await user.remove_roles(previous)
@@ -374,12 +372,10 @@ async def level_up(user, username, guild):
 			await user.create_dm()
 			await user.dm_channel.send(f'You are now Level 3 in the server {guild}!')
 		elif lvl_end == 4:
-			one = discord.utils.get(user.guild.roles, name="Level 1")
-			await user.remove_roles(one)
 			previous = discord.utils.get(user.guild.roles, name="Level 3")
 			role = discord.utils.get(user.guild.roles, name="Level 4")
-			await user.remove_roles(previous)
 			await user.add_roles(role)
+			await user.remove_roles(previous)
 			await user.create_dm()
 			await user.dm_channel.send(f'You are now Level 4 in the server {guild}!')
 		elif lvl_end == 5:
