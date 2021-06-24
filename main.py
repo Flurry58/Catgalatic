@@ -215,8 +215,11 @@ async def clearwarnings(ctx, member: discord.Member):
 	filename = 'warns' + hexname
 	auth = str(ctx.author)
 	role = discord.utils.get(ctx.guild.roles, name='[!]STAFF TEAM')
-	if role in ctx.author.roles:
-		requests.get('https://Test-1.loganpollack.repl.co', params={'file': filename,'function': 'clearwarnings', 'author': str(member), 'server':hexname})
+	if str(member) == auth:
+		embed = discord.Embed(title="Permission Denied.", description="You can't clear your own warnings!", color=0xff00f6) 
+		await ctx.send(embed=embed)
+	elif role in ctx.author.roles:
+		requests.get('https://Test-1.loganpollack.repl.co', params={'file': filename,'function': 'clearwarnings', 'author': str(member)})
 		await member.create_dm()
 		await member.dm_channel.send('Your warnings have been cleared!')
 		await ctx.send(f'Warnings cleared for {auth}')
