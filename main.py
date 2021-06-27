@@ -345,6 +345,8 @@ async def add_experience(user, guild1):
 async def level_up(user, username, guild):
 	convert = guild.encode('utf-8')
 	hexname = convert.hex()
+	channel_name = discord.utils.get(ctx.guild.channels, name="『bot-spam』")
+	channel = channel.id
 	response = requests.get('https://Test-1.loganpollack.repl.co', params={'file': hexname,'function': 'level_up', 'author': user})
 	output = response.json()
 	lvl_end = int(output['end'])
@@ -372,22 +374,19 @@ async def level_up(user, username, guild):
 				role = discord.utils.get(user.guild.roles, name="Level 2")
 				await user.remove_roles(previous)
 				await user.add_roles(role)
-				await user.create_dm()
-				await user.dm_channel.send(f'You are now Level 2 in the server {guild}!')
+				await channel.send(f'You are now Level 2 in the server {guild}!')
 			elif lvl_end == 3:
 				previous = discord.utils.get(user.guild.roles, name="Level 2")
 				role = discord.utils.get(user.guild.roles, name="Level 3")
 				await user.remove_roles(previous)
 				await user.add_roles(role)
-				await user.create_dm()
-				await user.dm_channel.send(f'You are now Level 3 in the server {guild}!')
+				await channel.send(f'You are now Level 3 in the server {guild}!')
 			elif lvl_end == 4:
 				previous = discord.utils.get(user.guild.roles, name="Level 3")
 				role = discord.utils.get(user.guild.roles, name="Level 4")
 				await user.add_roles(role)
 				await user.remove_roles(previous)
-				await user.create_dm()
-				await user.dm_channel.send(f'You are now Level 4 in the server {guild}!')
+				await channel.send(f'You are now Level 4 in the server {guild}!')
 			elif lvl_end == 5:
 				one = discord.utils.get(user.guild.roles, name="Level 1")
 				await user.remove_roles(one)
@@ -395,8 +394,7 @@ async def level_up(user, username, guild):
 				role = discord.utils.get(user.guild.roles, name="Level 5")
 				await user.remove_roles(previous)
 				await user.add_roles(role)
-				await user.create_dm()
-				await user.dm_channel.send(f'You are now Level 5 in the server {guild}!')
+				await channel.send(f'You are now Level 5 in the server {guild}!')
 			elif lvl_end == 6:
 				one = discord.utils.get(user.guild.roles, name="Level 1")
 				await user.remove_roles(one)
@@ -404,8 +402,7 @@ async def level_up(user, username, guild):
 				role = discord.utils.get(user.guild.roles, name="Level 6")
 				await user.remove_roles(previous)
 				await user.add_roles(role)
-				await user.create_dm()
-				await user.dm_channel.send(f'You are now Level 6 in the server {guild}!')
+				await channel.send(f'You are now Level 6 in the server {guild}!')
 			elif lvl_end == 7:
 				one = discord.utils.get(user.guild.roles, name="Level 1")
 				await user.remove_roles(one)
@@ -413,8 +410,7 @@ async def level_up(user, username, guild):
 				role = discord.utils.get(user.guild.roles, name="Level 7")
 				await user.remove_roles(previous)
 				await user.add_roles(role)
-				await user.create_dm()
-				await user.dm_channel.send(f'You are now Level 7 in the server {guild}!')
+				await channel.send(f'You are now Level 7 in the server {guild}!')
 			elif lvl_end == 8:
 				one = discord.utils.get(user.guild.roles, name="Level 1")
 				await user.remove_roles(one)
@@ -422,8 +418,7 @@ async def level_up(user, username, guild):
 				role = discord.utils.get(user.guild.roles, name="Level 8")
 				await user.remove_roles(previous)
 				await user.add_roles(role)
-				await user.create_dm()
-				await user.dm_channel.send(f'You are now Level 8 in the server {guild}!')
+				await channel.send(f'You are now Level 8 in the server {guild}!')
 			elif lvl_end == 9:
 				one = discord.utils.get(user.guild.roles, name="Level 1")
 				await user.remove_roles(one)
@@ -431,8 +426,7 @@ async def level_up(user, username, guild):
 				role = discord.utils.get(user.guild.roles, name="Level 9")
 				await user.remove_roles(previous)
 				await user.add_roles(role)
-				await user.create_dm()
-				await user.dm_channel.send(f'You are now Level 9 in the server {guild}!')
+				await channel.send(f'You are now Level 9 in the server {guild}!')
 
 
 
